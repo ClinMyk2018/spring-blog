@@ -29,8 +29,8 @@ public class PostController {
 
     @PostMapping ("/posts/create")
     @ResponseBody
-    public String postCreated() {
-        return "view the created post";
+    public void insert() {
+//        This will end up being an redirect (POSSIBLY)
     }
 
 
