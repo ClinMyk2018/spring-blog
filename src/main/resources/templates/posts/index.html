@@ -2,6 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/head :: head('View Posts')">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <style>
+        .card{
+            color: black;
+            background-color: white;
+        }
+        .card:hover{
+            color: white;
+            background-color: darkslategrey;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -9,11 +21,17 @@
 
 <header th:replace="partials/header :: header('View all Posts!')"></header>
 
-<main class="container">
+<main class="container row ml-5">
     <th:block th:each="post : ${posts}">
-        <div class="card">
+        <div class="card col-5 " style="margin: 1rem;">
             <h3 th:text="${post.title}">Post</h3>
+            <hr />
             <p th:text="${post.body}"></p>
+            <label th:hidden="${post.id}"></label>
+            <div class="row">
+            <button class="btn btn-warning col-3 mx-2" id="editSubmit" type="submit" name="edit" >Edit Post</button>
+            <button class="btn btn-danger col-3 mx-2" id="deleteSubmit" type="submit" name="delete" >Delete Post</button>
+            </div>
         </div>
     </th:block>
 </main>

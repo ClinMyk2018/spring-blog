@@ -11,15 +11,28 @@ public class Post {
     @Id
     @GeneratedValue
     private int id;
+
     private String title;
     private String body;
 
     public Post() {
     }
 
-    public Post(String title, String body) {
+    public Post(String title) {
+        this.title = title;
+    }
+
+    public Post(String body, String title) {
         this.title = title;
         this.body = body;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

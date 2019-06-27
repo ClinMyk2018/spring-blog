@@ -1,43 +1,54 @@
 package com.codeup.springblog;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
+
 @Controller
 public class PostController {
-    private List<Post> getPosts() {
-        return Arrays.asList(
-                new Post("Post 1", "All about your favorite new food."),
-                new Post("Post 2", "Everybody loves Raymond."),
-                new Post("Post 3", "Check out the new cars."));
+
+    //understanding how the repository works!!!
+    //IT IS AMAZING
+    private PostRepository postDao;
+
+    //The Dao Basically, but is given from Repository
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
     }
 
+    //Getting all posts!
     @GetMapping("/posts")
-    public String index(Model model) {
-        model.addAttribute("posts", getPosts());
-        return "/index";
+    public String all(Model model) {
+        model.addAttribute("posts", postDao.findAll());
+        return "/posts/index";
     }
 
-    @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String show(@PathVariable long id) {
-        return "Showing post: " + id;
-    }
+    //deleting all posts!
+
+//    @GetMapping("/posts/{title}")
+//    public String deleted( @PathVariable String title) {
+//        return postDao.delete(title);
+//    }
+
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String create() {
-        return "Showing create post view";
+    private String create() {
+        return "/posts/create";
     }
+
+    //To create new posts
     @PostMapping("/posts/create")
-    @ResponseBody
-    public void insert() {
+    private String insert(
+            @RequestParam String body,
+            @RequestParam String title )
+    {
+        Post adToInsert = new Post(body, title);
+        postDao.save(adToInsert);
+        return "redirect:/posts/index";
     }
 
 
