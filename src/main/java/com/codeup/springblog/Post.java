@@ -1,14 +1,15 @@
 package com.codeup.springblog;
 
-import javax.annotation.processing.Generated;
-import java.security.PrivateKey;
+import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-//@Entity
-//@Table(name= "posts")
+@Entity
+@Table(name= "posts")
 public class Post {
 
-//    @Id
-//    @GeneratedValue
+    @Id
+    @GeneratedValue
     private int id;
     private String title;
     private String body;
