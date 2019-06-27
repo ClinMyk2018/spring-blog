@@ -14,9 +14,9 @@ import java.util.List;
 public class PostController {
     private List<Post> getPosts() {
         return Arrays.asList(
-                new Post("Post 1", "Some cool stuff 1."),
-                new Post("Post 2", "Some cool stuff 2."),
-                new Post("Post 3", "Some cool stuff 3."));
+                new Post("Post 1", "All about your favorite new food."),
+                new Post("Post 2", "Everybody loves Raymond."),
+                new Post("Post 3", "Check out the new cars."));
     }
 
     @GetMapping("/posts")
