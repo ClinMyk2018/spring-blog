@@ -22,7 +22,7 @@ public class PostController {
     @GetMapping("/posts")
     public String index(Model model) {
         model.addAttribute("posts", getPosts());
-        return "/partials/index";
+        return "/index";
     }
 
     @GetMapping("/posts/{id}")
