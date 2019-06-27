@@ -1,21 +1,32 @@
 package com.codeup.springblog;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.concurrent.ThreadLocalRandom;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class DiceRollController {
 
-    @GetMapping("/roll-dice/{n}")
-    public String diceGame(@PathVariable int n) {
-        int rando = ThreadLocalRandom.current().nextInt(1, 6 + 1);
-        if (n == rando) {
-            return "You Win!";
-        } else {
-            return "You Lose!";
-        }
-        return "roll-dice";
+    @GetMapping("/roll-dice")
+    public String rollPage() {
+        return "/roll-dice";
     }
+
+    @GetMapping("/roll-dice/{guess}")
+    public String guessPage(@PathVariable int guess, Model model) {
+        int rand = getRandInt();
+        model.addAttribute("roll", rand)
+                .addAttribute("guess", guess)
+                .addAttribute("result", rand == guess);
+        return "/dice-results";
+    }
+
+    public int getRandInt() {
+        double randomDouble = Math.random();
+        randomDouble = randomDouble * 6 + 1;
+        int randomInt = (int) randomDouble;
+        return randomInt;
+    }
+
 }
