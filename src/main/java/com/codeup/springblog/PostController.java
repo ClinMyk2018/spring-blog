@@ -20,33 +20,35 @@ public class PostController {
 
     //Getting all posts!
     @GetMapping("/posts")
-    public String all(Model model) {
+    public String all(Model model){
         model.addAttribute("posts", postDao.findAll());
-        return "/posts/index";
+        return "posts/index";
     }
 
-    @GetMapping("/posts/{id}")
-    public String show(@PathVariable int id, Model model) {
+    //Show one post, by ID #
+    @GetMapping("/posts/{id")
+    public String show(@PathVariable int id, Model model){
         model.addAttribute("post", postDao.findOne(id));
-        return "posts/show";
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")
-    public String create() {
+    public String create(){
         return "/posts/create";
     }
 
-    //To create new posts
-    @PostMapping("/posts/create")
-    private String insert(
+    //To Create a new Post
+    @PostMapping("posts/create")
+    private String insertPost(
             @RequestParam String title,
-            @RequestParam String body )
-    {
+            @RequestParam String body
+    ){
         Post newPost = new Post(body, title);
         postDao.save(newPost);
-        return "/posts";
+        return "redirect:/posts";
     }
 
+    //Editing a current Post
     @GetMapping("/posts/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
         Post post = postDao.findOne(id);
@@ -58,8 +60,8 @@ public class PostController {
     @PostMapping("/posts/{id}/edit")
     public String update(
             @PathVariable int id,
-            @RequestParam String body,
-            @RequestParam String title) {
+            @RequestParam String title,
+            @RequestParam String body) {
 
         Post postToEdit = new Post(id, body, title);
         postDao.save(postToEdit);

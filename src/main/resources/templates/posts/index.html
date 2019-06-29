@@ -21,15 +21,15 @@
 
 <header th:replace="partials/header :: header('View all Posts!')"></header>
 
-<main class="container">
+<main class="container row ml-5" style="width: 90%;">
     <th:block th:each="post : ${posts}">
-        <div class="card p-1">
+        <div class="card p-1 col-5 ml-5 my-5" style="border: 5px double lightslategray;">
             <h3 th:text="${#strings.capitalizeWords(post.title)}">Post</h3>
             <p th:text="${post.body}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus
                 accusantium alias aliquid architecto eligendi, excepturi explicabo libero maiores non numquam
                 quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</p>
-            <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="POST">
-                <button class="btn btn-warning">Edit</button>
+            <form id="edit" th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="GET">
+                <button class="btn btn-warning ">Edit</button>
             </form>
         </div>
     </th:block>
