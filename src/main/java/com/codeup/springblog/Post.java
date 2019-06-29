@@ -10,6 +10,7 @@ public class Post {
 
     @Id
     @GeneratedValue
+    @Column(columnDefinition = "INT unsigned NOT NULL AUTO_INCREMENT")
     private int id;
 
     private String title;
@@ -23,6 +24,12 @@ public class Post {
     }
 
     public Post(String body, String title) {
+        this.title = title;
+        this.body = body;
+    }
+
+    public Post(int id, String body, String title) {
+        this.id = id;
         this.title = title;
         this.body = body;
     }

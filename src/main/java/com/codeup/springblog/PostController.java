@@ -1,12 +1,9 @@
 package com.codeup.springblog;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
 
 
 @Controller
@@ -28,28 +25,51 @@ public class PostController {
         return "/posts/index";
     }
 
-    //deleting all posts!
-
-//    @GetMapping("/posts/{title}")
-//    public String deleted( @PathVariable String title) {
-//        return postDao.delete(title);
-//    }
+    @GetMapping("/posts/{id}")
+    public String show(@PathVariable int id, Model model) {
+        model.addAttribute("post", postDao.findOne(id));
+        return "posts/show";
+    }
 
     @GetMapping("/posts/create")
-    private String create() {
+    public String create() {
         return "/posts/create";
     }
 
     //To create new posts
     @PostMapping("/posts/create")
     private String insert(
-            @RequestParam String body,
-            @RequestParam String title )
+            @RequestParam String title,
+            @RequestParam String body )
     {
-        Post adToInsert = new Post(body, title);
-        postDao.save(adToInsert);
-        return "redirect:/posts/index";
+        Post newPost = new Post(body, title);
+        postDao.save(newPost);
+        return "/posts";
     }
 
+    @GetMapping("/posts/{id}/edit")
+    public String edit(@PathVariable int id, Model model) {
+        Post post = postDao.findOne(id);
+        System.out.println(post);
+        model.addAttribute("post", postDao.findOne(id));
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String update(
+            @PathVariable int id,
+            @RequestParam String body,
+            @RequestParam String title) {
+
+        Post postToEdit = new Post(id, body, title);
+        postDao.save(postToEdit);
+        return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String delete(@PathVariable int id) {
+        postDao.delete(id);
+        return "redirect:/posts";
+    }
 
 }

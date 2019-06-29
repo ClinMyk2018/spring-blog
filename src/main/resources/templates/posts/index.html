@@ -21,17 +21,16 @@
 
 <header th:replace="partials/header :: header('View all Posts!')"></header>
 
-<main class="container row ml-5">
+<main class="container">
     <th:block th:each="post : ${posts}">
-        <div class="card col-5 " style="margin: 1rem;">
-            <h3 th:text="${post.title}">Post</h3>
-            <hr />
-            <p th:text="${post.body}"></p>
-            <label th:hidden="${post.id}"></label>
-            <div class="row">
-            <button class="btn btn-warning col-3 mx-2" id="editSubmit" type="submit" name="edit" >Edit Post</button>
-            <button class="btn btn-danger col-3 mx-2" id="deleteSubmit" type="submit" name="delete" >Delete Post</button>
-            </div>
+        <div class="card p-1">
+            <h3 th:text="${#strings.capitalizeWords(post.title)}">Post</h3>
+            <p th:text="${post.body}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus
+                accusantium alias aliquid architecto eligendi, excepturi explicabo libero maiores non numquam
+                quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</p>
+            <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="POST">
+                <button class="btn btn-warning">Edit</button>
+            </form>
         </div>
     </th:block>
 </main>
