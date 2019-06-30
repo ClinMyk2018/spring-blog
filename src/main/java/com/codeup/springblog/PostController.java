@@ -18,6 +18,16 @@ public class PostController {
         this.postDao = postDao;
     }
 
+    @GetMapping("/posts/login")
+    public String login(){
+        return "/posts/login";
+    }
+
+    @GetMapping("/posts/register")
+    public String register(){
+        return "/posts/register";
+    }
+
     //Getting all posts!
     @GetMapping("/posts")
     public String all(Model model){

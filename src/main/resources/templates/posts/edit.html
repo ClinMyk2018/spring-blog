@@ -10,7 +10,7 @@
 
 <header th:replace="partials/header :: header('Edit / Delete Posts')"></header>
 
-<main class="container">
+<main class="container" style="background-color: lightslategray; border: 5px solid darkslategrey;">
     <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="POST">
         <div class="form-group">
             <label for="title">Title</label>
@@ -20,11 +20,12 @@
             <label for="body">Body</label>
             <textarea class="form-control" name="body" id="body" cols="30" rows="10" th:text="${post.body}"></textarea>
         </div>
-        <button class="btn btn-block btn-primary">Submit</button>
+        <button class="btn btn-primary px-5 mx-1 my-1" >Submit</button>
     </form>
     <form th:action="@{'/posts/' + ${post.id} + '/delete'}" th:method="POST">
-        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-danger px-5 mx-1" >Delete </button>
     </form>
+    <br class="mb-1" />
 </main>
 
 <th:block th:include="partials/scripts :: scripts" />
