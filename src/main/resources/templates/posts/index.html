@@ -3,6 +3,7 @@
 <head th:replace="partials/head :: head('View Posts')">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
+
 </head>
 <body>
 
@@ -10,6 +11,7 @@
 
 <header th:replace="partials/header :: header('View all Posts!')"></header>
 
+<div id="bg" style="background-image: url('../img/bgBlue.jpeg');">
 <main class="container row ml-5" style="width: 90%;">
     <th:block th:each="post : ${posts}">
         <div class="card p-1 col-5 ml-5 my-5" style="border: 5px double lightslategray;">
@@ -23,6 +25,7 @@
         </div>
     </th:block>
 </main>
+</div>
 
 <th:block th:include="partials/scripts :: scripts" />
 
