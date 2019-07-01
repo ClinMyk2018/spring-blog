@@ -11,7 +11,7 @@
 
 <header th:replace="partials/header :: header('View all Posts!')"></header>
 
-<div id="bg" style="background-image: url('../img/bgBlue.jpeg');">
+<div id="bg" style="background-image: url('img/bgBlue.jpeg');">
 <main class="container row ml-5" style="width: 90%;">
     <th:block th:each="post : ${posts}">
         <div class="card p-1 col-5 ml-5 my-5" style="border: 5px double lightslategray;">
@@ -19,9 +19,10 @@
             <p th:text="${post.body}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus
                 accusantium alias aliquid architecto eligendi, excepturi explicabo libero maiores non numquam
                 quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</p>
-            <form id="edit" th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="GET">
-                <button class="btn btn-warning ">Edit</button>
-            </form>
+<!--            <form id="edit" th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="GET">-->
+<!--                <button class="btn btn-warning ">Edit</button>-->
+<!--            </form>-->
+            <a th:href="@{'/posts/'+${post.id}+'/edit'}">Edit</a>
         </div>
     </th:block>
 </main>
