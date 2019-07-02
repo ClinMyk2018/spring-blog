@@ -10,14 +10,19 @@
 
 <header th:replace="partials/header :: header('Show Post!')"></header>
 
-<main class="container">
+<div>
 
-    <div class="card">
-        <h2 th:text="${post.title}"></h2>
-        <p th:text="${post.body}"></p>
+<main class="container row">
+
+    <div class="card p-1 col-5 ml-5 my-5" style="border: 5px double lightslategray;">
+        <h2 th:text="${#strings.capitalizeWords(post.title)}">Post</h2>
+        <p th:text="'Authored by: ~' + ${post.getUser().getName()}"></p>
+        <a href="/#" th:text="${post.getUser().getEmail()}"></a>
+        <h5 th:text="${post.body}"></h5>
     </div>
 
 </main>
+</div>
 
 <th:block th:include="partials/scripts :: scripts" />
 

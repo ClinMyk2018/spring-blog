@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class PostController {
 
-    //understanding how the repository works!!!
-    //IT IS AMAZING
     private PostRepository postDao;
+    private UserRepository userDao;
 
-    //The Dao Basically, but is given from Repository
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts/login")
@@ -36,50 +35,46 @@ public class PostController {
     }
 
     //Show one post, by ID #
-    @GetMapping("/posts/{id")
-    public String show(@PathVariable int id, Model model){
+    @GetMapping("/posts/{id}")
+    public String show(@PathVariable long id, Model model){
         model.addAttribute("post", postDao.findOne(id));
         return "/posts/show";
     }
 
     @GetMapping("/posts/create")
-    public String create(){
+    public String create(Model model){
+        model.addAttribute("post", new Post());
         return "/posts/create";
     }
 
     //To Create a new Post
     @PostMapping("posts/create")
-    private String insertPost(
-            @RequestParam String title,
-            @RequestParam String body
-    ){
-        Post newPost = new Post(body, title);
-        postDao.save(newPost);
+    private String insertPost(@ModelAttribute Post post){
+        post.setUser(userDao.findOne(2L));
+        postDao.save(post);
         return "redirect:/posts";
     }
 
     //Editing a current Post
     @GetMapping("/posts/{id}/edit")
-    public String edit(@PathVariable int id, Model model) {
+    public String edit(@PathVariable long id, Model model) {
         Post post = postDao.findOne(id);
-        System.out.println(post);
         model.addAttribute("post", postDao.findOne(id));
         return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
     public String update(
-            @PathVariable int id,
-            @RequestParam String title,
-            @RequestParam String body) {
-
-        Post postToEdit = new Post(id, body, title);
-        postDao.save(postToEdit);
+            @PathVariable long id,
+            @ModelAttribute Post post)
+    {
+        post.setUser(userDao.findOne(2L));
+        postDao.save(post);
         return "redirect:/posts";
     }
 
     @PostMapping("/posts/{id}/delete")
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable long id) {
         postDao.delete(id);
         return "redirect:/posts";
     }

@@ -11,16 +11,16 @@
 <header th:replace="partials/header :: header('Create A New Post!')"></header>
 
 <main class="container" style="background-color: lightslategray; border: 5px solid darkslategrey;">
-<form method="post">
+<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
     <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="Title" />
+        Title:
+        <input type="text" class="form-control" th:field="*{title}" placeholder="Title" />
     </div>
     <div class="form-group">
-        <label for="body">Message Body</label>
-        <textarea class="form-control" name="body" id="body" placeholder="Body"></textarea>
+        Message Body:
+        <textarea class="form-control" th:field="*{body}" placeholder="Body"></textarea>
     </div>
-    <button class="btn btn-primary" id="createSubmit" type="submit">Create New Post</button>
+    <input class="btn btn-primary px-5 mx-1" type="submit" />
 </form>
     <br class="mb-1" />
 </main>
