@@ -68,7 +68,7 @@ public class PostController {
             @PathVariable long id,
             @ModelAttribute Post post)
     {
-        post.setUser(userDao.findOne(2L));
+        post.setUser(userDao.findOne(3L));
         postDao.save(post);
         return "redirect:/posts";
     }
