@@ -1,4 +1,4 @@
-package com.codeup.springblog;
+package com.codeup.taxes;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.codeup.springblog;
+package com.codeup.springblog.Model;
 
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;

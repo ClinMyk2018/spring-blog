@@ -1,5 +1,9 @@
-package com.codeup.springblog;
+package com.codeup.springblog.Controller;
 
+import com.codeup.springblog.Model.Post;
+import com.codeup.springblog.Repos.PostRepository;
+import com.codeup.springblog.Services.EmailService;
+import com.codeup.springblog.Repos.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +19,6 @@ public class PostController {
         this.postDao = postDao;
         this.userDao = userDao;
         this.emailService = emailService;
-    }
-
-    @GetMapping("/posts/login")
-    public String login(){
-        return "/posts/login";
-    }
-
-    @GetMapping("/posts/register")
-    public String register(){
-        return "/posts/register";
     }
 
     //Getting all posts!
@@ -76,9 +70,9 @@ public class PostController {
 
     @PostMapping("/posts/{id}/delete")
     public String delete(@PathVariable long id) {
-        postDao.delete(id);
         emailService.prepareAndSend
-                (postDao.findOne(1L), "Post deleted", "You have deleted the post");
+                (postDao.findOne(id), "Post deleted", "You have deleted the post");
+        postDao.delete(id);
         return "redirect:/posts";
     }
 

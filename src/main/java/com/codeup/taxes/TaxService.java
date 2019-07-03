@@ -1,4 +1,4 @@
-package com.codeup.springblog;
+package com.codeup.taxes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,19 +7,19 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-@Service("mailService")
-public class EmailService {
+@Service("taxService")
+public class TaxService {
 
     @Autowired
-    public  JavaMailSender emailSender;
+    public JavaMailSender emailSender;
 
     @Value("${spring.mail.from}")
     private String from;
 
-    public void prepareAndSend(Post post, String subject, String body) {
+    public void incomeNotify(String subject, String body) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
-        msg.setTo(post.getUser().getEmail());
+        msg.setTo("mykal@live.com");
         msg.setSubject(subject);
         msg.setText(body);
 
@@ -30,4 +30,5 @@ public class EmailService {
             System.err.println(ex.getMessage());
         }
     }
+
 }

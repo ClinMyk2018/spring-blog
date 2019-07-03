@@ -1,6 +1,7 @@
-package com.codeup.springblog;
+package com.codeup.springblog.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,14 +20,26 @@ public class Users {
     @Column(nullable = false)
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
 
     public Users() {
     }
 
-    public Users(String name, String password, String email) {
+    public Users(String name, String email, String password) {
         this.name = name;
-        this.password = password;
         this.email = email;
+        this.password = password;
+    }
+
+    public Users(Users copy) {
+        id = copy.id;
+        name = copy.name;
+        email = copy.email;
+        password = copy.password;
+        this.posts = copy.posts;
+
     }
 
     public long getId() {
@@ -59,6 +72,14 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
 }

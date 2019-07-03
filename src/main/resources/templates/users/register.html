@@ -10,20 +10,17 @@
 <header th:replace="partials/header :: header('Register A New User')"></header>
 
 <main class="container" style="background-color: lightslategray; border: 5px solid darkslategrey;">
-    <form th:action="@{/users/register}" th:method="post" th:object="${user}">
-        <div class="form-group">
-            User Name
-            <input type="text" class="form-control" th:field="*{name}" placeholder="User Name" />
-        </div>
-        <div class="form-group">
-            Email
-            <input type="email" class="form-control" th:field="*{email}" placeholder="name@live.com" />
-        </div>
-        <div class="form-group">
-            Password
-            <input class="form-control" th:field="*{password}" />
-        </div>
-        <input class="btn btn-primary px-5 mx-1" type="submit" />
+    <form th:action="@{/users/register}" method="POST" th:object="${user}">
+        <label for="username">Username</label>
+        <input id="username" th:field="*{name}" />
+
+        <label for="email">Email</label>
+        <input id="email" th:field="*{email}" />
+
+        <label for="password">Password</label>
+        <input id="password" type="password" th:field="*{password}" />
+
+        <input value="Sign me up!" type="submit" />
     </form>
     <br class="mb-1" />
 </main>
