@@ -24,10 +24,11 @@
     <th:block th:each="post : ${posts}">
         <div class="card p-1 col-5 ml-5 my-5" style="border: 5px double lightslategray;">
             <h2 th:text="${#strings.capitalizeWords(post.title)}">Post</h2>
-            <p th:text="'Authored by: ~' + ${post.getUser().getName()}"></p>
-            <h5 th:text="${post.body}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus
+            <em><p th:text="'Authored by: ~' + ${post.getUser().getName()}" class="mb-0"></p></em>
+            <hr class="mt-0"/>
+            <h6 th:text="${post.body}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus
                 accusantium alias aliquid architecto eligendi, excepturi explicabo libero maiores non numquam
-                quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</h5>
+                quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</h6>
             <a class="btn btn-primary"  th:href="@{'/posts/'+${post.id}}">View</a>
                 <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${post.user.id}"
                    class="btn btn-warning"  th:href="@{'/posts/'+${post.id}+'/edit'}">Edit</a>

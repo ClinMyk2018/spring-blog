@@ -10,15 +10,28 @@
 
 <header th:replace="partials/header :: header('Show Post!')"></header>
 
-<div>
+<div id="bgs"
+     style="
+     background-image: url('img/bgBlue.jpeg');
+     height: 100%;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;">
 
-<main class="container row">
+<main class="container row mt-5"
+      style="
+         border: 5px double lightslategray;
+         margin: auto;
+         width: 50%;
+         padding: 10px;">
 
-    <div class="card p-1 col-5 ml-5 my-5" style="border: 5px double lightslategray;">
-        <h2 th:text="${#strings.capitalizeWords(post.title)}">Post</h2>
-        <p th:text="'Authored by: ~' + ${post.getUser().getName()}"></p>
-        <a href="/#" th:text="${post.getUser().getEmail()}"></a>
-        <h5 th:text="${post.body}"></h5>
+    <div class="card my-2 p-5 col">
+
+        <h2 th:text="${#strings.capitalizeWords(post.title)}" class="text-center">Post</h2>
+        <hr/>
+        <p class="mb-0">Authored By: ~<em th:text="${post.getUser().getName()}"></em></p>
+        <p>Email: <a href="/#" th:text="${post.getUser().getEmail()}"></a></p>
+        <h6 th:text="${post.body}"></h6>
     </div>
 
 </main>
