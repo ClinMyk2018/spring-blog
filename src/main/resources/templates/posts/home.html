@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
->
 <head th:replace="partials/head :: head('Home')">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
@@ -13,12 +12,30 @@
 
 <header th:replace="partials/header :: header('Home')"></header>
 
-<div sec:authorize="isAuthenticated()">
-    This content is only shown to authenticated users.
+<div sec:authorize="isAnonymous()">
+<h1>Hello, Please Log In.... or View Posts</h1>
+</div>
 
-<!--    User ID: <span th:text="${#authentication.principal.id}"/>-->
-<!--    Username: <span th:text="${#authentication.principal.name}"/>-->
-<!--    Email: <span th:text="${#authentication.principal.email}"/>-->
+<div sec:authorize="isAuthenticated()">
+    <div class="card bg-dark text-white">
+<!--        <img src="/static/img/bgBlue.jpeg" class="card-img" alt="..." />-->
+        <div class="card-img-overlay" style="color: darkslategrey;">
+            <h1 class="card-title text-center mb-2">
+                Welcome, <span th:text="${#authentication.principal.name}"/>!
+            </h1>
+            <div class="text-center" style="border: 2px solid lightcoral;">
+            Email: <span th:text="${#authentication.principal.email}"/><br/>
+            User ID: <span th:text="${#authentication.principal.id}"/>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <h3 class="card-text text-center mt-5">
+                This sight is meant help display posts of any sort, but keep in mind careful monitoring is happening!
+            </h3>
+        </div>
+    </div>
 </div>
 
 <th:block th:include="partials/scripts :: scripts" />

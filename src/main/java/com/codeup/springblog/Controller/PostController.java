@@ -1,9 +1,10 @@
 package com.codeup.springblog.Controller;
 
 import com.codeup.springblog.Model.Post;
+import com.codeup.springblog.Model.Users;
 import com.codeup.springblog.Repos.PostRepository;
 import com.codeup.springblog.Services.EmailService;
-import com.codeup.springblog.Repos.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private PostRepository postDao;
-    private UserRepository userDao;
     private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
+    public PostController(PostRepository postDao, EmailService emailService) {
         this.postDao = postDao;
-        this.userDao = userDao;
         this.emailService = emailService;
     }
 
@@ -44,9 +43,9 @@ public class PostController {
     //To Create a new Post
     @PostMapping("posts/create")
     private String insertPost(@ModelAttribute Post post){
-        post.setUser(userDao.findOne(3L));
+        post.setUser((Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         postDao.save(post);
-        emailService.prepareAndSend(post, "Post created", "You have created a new post");
+        emailService.prepareAndSend(post, "Post created", "<h1>You have created a new post</h1>");
         return "redirect:/posts";
     }
 
@@ -62,7 +61,7 @@ public class PostController {
             @PathVariable long id,
             @ModelAttribute Post post)
     {
-        post.setUser(userDao.findOne(1L));
+        post.setUser((Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         postDao.save(post);
         emailService.prepareAndSend(post, "Post edited", "Your post was edited");
         return "redirect:/posts";
