@@ -15,12 +15,13 @@
         <p class="card-title">Invalid Username and Password.</p>
     </div>
 </div>
-<div th:if="${param.logout}" class="card border-success my-1" style="max-width: 30rem;">
+<div th:if="${param.logout}" class="card border-success my-2 py-0" style="max-width: 30rem;">
     <div class="card-body text-secondary">
         <p class="card-title"> You have been logged out.</p>
     </div>
 </div>
 
+<main class="container mt-5" style="background-color: lightslategray; border: 5px solid darkslategrey;">
 <form th:action="@{/users/login}" method="post">
     <label for="username">Username</label>
     <input id="username" name="username" type="text" />
@@ -28,6 +29,7 @@
     <input id="password" name="password" type="password" />
     <input type="submit" value="Log In" />
 </form>
+</main>
 
 <th:block th:include="partials/scripts :: scripts" />
 
