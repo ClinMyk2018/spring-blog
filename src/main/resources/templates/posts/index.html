@@ -30,8 +30,11 @@
                 accusantium alias aliquid architecto eligendi, excepturi explicabo libero maiores non numquam
                 quae recusandae, sapiente suscipit, unde vero voluptatibus! Officiis, temporibus.</h6>
             <a class="btn btn-primary"  th:href="@{'/posts/'+${post.id}}">View</a>
-                <a sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${post.user.id}"
-                   class="btn btn-warning"  th:href="@{'/posts/'+${post.id}+'/edit'}">Edit</a>
+                <a sec:authorize="isAuthenticated()"
+                   th:if="${#authentication.principal.id} == ${post.user.id}"
+                   class="btn btn-warning"
+                   th:href="@{'/posts/'+${post.id}+'/edit'}"
+                >Edit</a>
         </div>
     </th:block>
 </main>

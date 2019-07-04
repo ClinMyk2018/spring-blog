@@ -23,8 +23,10 @@ public class Users {
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
-
     public Users() {
+    }
+
+    public Users(long id) {
     }
 
     public Users(String name, String email, String password) {

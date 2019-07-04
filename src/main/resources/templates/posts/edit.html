@@ -1,12 +1,26 @@
+
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="partials/head :: head('Alter Posts')">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
 </head>
+
 <body>
 
 <nav th:replace="partials/navbar :: nav"></nav>
+
+<div th:if="${#authentication.principal.id} != ${post.user.id}"
+     sec:authorize="isAuthenticated()" class="mt-5">
+    <h1 style="text-align: center; margin-top: 20%;">
+        This is not your post, you CANNOT edit it! Stop hacking my site!
+    </h1>
+</div>
+<div th:if="${#authentication.principal.id} == ${post.user.id}"
+     sec:authorize="isAuthenticated()">
+
 
 <header th:replace="partials/header :: header('Edit / Delete Posts')"></header>
 
@@ -27,6 +41,7 @@
     </form>
     <br class="mb-1" />
 </main>
+</div>
 
 <th:block th:include="partials/scripts :: scripts" />
 

@@ -49,23 +49,23 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    //Editing a current Post
-    @GetMapping("/posts/{id}/edit")
-    public String edit(@PathVariable long id, Model model) {
-        model.addAttribute("post", postDao.findOne(id));
-        return "posts/edit";
-    }
+        //Editing a current Post
+        @GetMapping("/posts/{id}/edit")
+        public String edit ( @PathVariable long id, Model model){
+                model.addAttribute("post", postDao.findOne(id));
+                return "posts/edit";
+        }
 
-    @PostMapping("/posts/{id}/edit")
-    public String update(
-            @PathVariable long id,
-            @ModelAttribute Post post)
-    {
-        post.setUser((Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        postDao.save(post);
-        emailService.prepareAndSend(post, "Post edited", "Your post was edited");
-        return "redirect:/posts";
-    }
+        @PostMapping("/posts/{id}/edit")
+        public String update (
+        @PathVariable long id,
+        @ModelAttribute Post post)
+        {
+            post.setUser((Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+            postDao.save(post);
+            emailService.prepareAndSend(post, "Post edited", "Your post was edited");
+            return "redirect:/posts";
+        }
 
     @PostMapping("/posts/{id}/delete")
     public String delete(@PathVariable long id) {
