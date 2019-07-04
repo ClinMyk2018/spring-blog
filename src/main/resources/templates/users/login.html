@@ -10,23 +10,28 @@
 
 <header th:replace="partials/header :: header('Log In')"></header>
 
-<div th:if="${param.error}" class="card border-danger my-1" style="max-width: 30rem;">
+<div th:if="${param.error}" class="card border-danger mt-5 py-0 px-0 text-center" style="width: 30rem; margin: 0 auto;">
     <div class="card-body text-secondary">
         <p class="card-title">Invalid Username and Password.</p>
     </div>
 </div>
-<div th:if="${param.logout}" class="card border-success my-2 py-0" style="max-width: 30rem;">
+<div th:if="${param.logout}" class="card border-success mt-5 py-0 px-0 text-center" style="width: 30rem; margin: 0 auto;">
     <div class="card-body text-secondary">
         <p class="card-title"> You have been logged out.</p>
     </div>
 </div>
 
-<main class="container mt-5" style="background-color: lightslategray; border: 5px solid darkslategrey;">
-<form th:action="@{/users/login}" method="post">
+<main class="container mt-5" style="background-color: lightslategray; border: 5px solid darkslategrey; width: 50rem;">
+<form th:action="@{/users/login}" method="post" class="mt-2 py-3 px-3 text-center">
     <label for="username">Username</label>
+    <br/>
     <input id="username" name="username" type="text" />
+    <br/>
     <label for="password">Password</label>
+    <br/>
     <input id="password" name="password" type="password" />
+    <br/>
+    <br/>
     <input type="submit" value="Log In" />
 </form>
 </main>

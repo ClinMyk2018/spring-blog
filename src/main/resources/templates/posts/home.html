@@ -13,12 +13,11 @@
 <header th:replace="partials/header :: header('Home')"></header>
 
 <div sec:authorize="isAnonymous()">
-<h1>Hello, Please Log In.... or View Posts</h1>
+<h1 class="mt-2" style="text-align: center;">Hello, Please Log In.... or View Posts</h1>
 </div>
 
 <div sec:authorize="isAuthenticated()">
     <div class="card bg-dark text-white">
-<!--        <img src="/static/img/bgBlue.jpeg" class="card-img" alt="..." />-->
         <div class="card-img-overlay" style="color: darkslategrey;">
             <h1 class="card-title text-center mb-2">
                 Welcome, <span th:text="${#authentication.principal.name}"/>!

@@ -9,17 +9,21 @@
 
 <header th:replace="partials/header :: header('Register A New User')"></header>
 
-<main class="container mt-5" style="background-color: lightslategray; border: 5px solid darkslategrey;">
-    <form th:action="@{/users/register}" method="POST" th:object="${user}">
+<main class="container mt-5 " style="background-color: lightslategray; border: 5px solid darkslategrey; width: 50rem;">
+    <form th:action="@{/users/register}" method="POST" th:object="${user}" class="mt-2 py-3 px-3 text-center">
         <label for="username">Username</label>
+        <br/>
         <input id="username" th:field="*{name}" />
-
+        <br/>
         <label for="email">Email</label>
+        <br/>
         <input id="email" th:field="*{email}" />
-
+        <br/>
         <label for="password">Password</label>
+        <br/>
         <input id="password" type="password" th:field="*{password}" />
-
+        <br/>
+        <br/>
         <input value="Sign me up!" type="submit" />
     </form>
     <br class="mb-1" />
