@@ -6,8 +6,13 @@
 </head>
 <body>
 
-<header th:fragment="header(text)" class="jumbotron mb-0">
-    <h1 class="text-center" th:text="${text}"></h1>
+<header th:fragment="header(text)" class="jumbotron mb-0"
+        style="background-image: url('img/SA_River.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 20rem;
+        ">
+    <h1 class="text-center text-white" th:text="${text}"></h1>
 </header>
 
 </body>

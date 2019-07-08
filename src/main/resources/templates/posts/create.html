@@ -10,7 +10,7 @@
 
 <header th:replace="partials/header :: header('Create A New Post!')"></header>
 
-<main class="container" style="background-color: lightslategray; border: 5px solid darkslategrey;">
+<main class="container mt-5" style="background-color: lightslategray; border: 5px solid darkslategrey;">
 <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
     <div class="form-group">
         Title:
