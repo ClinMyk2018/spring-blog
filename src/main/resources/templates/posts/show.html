@@ -25,7 +25,7 @@
          width: 50%;
          padding: 10px;">
 
-    <div class="card my-2 p-5 col">
+    <div class="card my-5 p-5 col">
 
         <h2 th:text="${#strings.capitalizeWords(post.title)}" class="text-center">Post</h2>
         <hr/>
@@ -36,6 +36,7 @@
 
 </main>
 </div>
+<br />
 
 <th:block th:include="partials/scripts :: scripts" />
 

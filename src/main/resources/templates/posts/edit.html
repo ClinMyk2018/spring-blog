@@ -24,7 +24,7 @@
 
 <header th:replace="partials/header :: header('Edit / Delete Posts')"></header>
 
-<main class="container" style="background-color: lightslategray; border: 5px solid darkslategrey;">
+<main class="container my-5" style="background-color: lightslategray; border: 5px solid darkslategrey;">
     <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="post" th:object="${post}">
         <div class="form-group">
             Title:
