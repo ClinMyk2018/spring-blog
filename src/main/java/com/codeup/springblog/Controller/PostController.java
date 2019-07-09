@@ -31,13 +31,13 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model model){
         model.addAttribute("post", postDao.findOne(id));
-        return "/posts/show";
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
     public String create(Model model){
         model.addAttribute("post", new Post());
-        return "/posts/create";
+        return "posts/create";
     }
 
     //To Create a new Post

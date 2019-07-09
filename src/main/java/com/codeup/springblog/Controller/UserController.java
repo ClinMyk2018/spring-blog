@@ -22,7 +22,7 @@ public class UserController {
     @GetMapping("/users/register")
     public String registerForm(Model model){
         model.addAttribute("user", new Users());
-        return "/users/register";
+        return "users/register";
     }
 
     @PostMapping("/users/register")
