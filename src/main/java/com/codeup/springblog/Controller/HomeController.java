@@ -20,10 +20,10 @@ public class HomeController {
         this.users= users;
     }
 
-    @GetMapping("/posts/home")
+    @GetMapping("/")
     public String returnHomePage(Model model) {
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "posts/home";
+        return "home";
     }
 
     public PostRepository getPostDao() {
