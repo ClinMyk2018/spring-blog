@@ -23,7 +23,7 @@ public class HomeController {
     @GetMapping("/posts/home")
     public String returnHomePage(Model model) {
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "/posts/home";
+        return "posts/home";
     }
 
     public PostRepository getPostDao() {
