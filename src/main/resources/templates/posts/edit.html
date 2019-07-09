@@ -22,9 +22,12 @@
      sec:authorize="isAuthenticated()">
 
 
-<header th:replace="partials/header :: header('Edit / Delete Posts')"></header>
+<header th:replace="partials/header :: header('')"></header>
 
-<main class="container my-5" style="background-color: lightslategray; border: 5px solid darkslategrey;">
+    <h1 class="text-center my-2">Edit / Delete Posts</h1>
+
+
+    <main class="container my-5" style="background-color: lightslategray; border: 5px solid darkslategrey;">
     <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="post" th:object="${post}">
         <div class="form-group">
             Title:
@@ -37,7 +40,7 @@
         <input class="btn btn-primary px-5 mx-1" type="submit" />
     </form>
     <form th:action="@{'/posts/' + ${post.id} + '/delete'}" th:method="POST">
-        <button class="btn btn-danger px-5 mx-1" >Delete </button>
+        <button class="btn btn-danger px-5 mx-1 mt-1" >Delete </button>
     </form>
     <br class="mb-1" />
 </main>

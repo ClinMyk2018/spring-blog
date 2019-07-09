@@ -4,38 +4,55 @@
 <head th:replace="partials/head :: head('Home')">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <style>
+
+
+    </style>
 
 </head>
 <body>
 
 <nav th:replace="partials/navbar :: nav"></nav>
 
-<header class="mb-2" th:replace="partials/header :: header('Home')"></header>
+<header class="mb-2" th:replace="partials/header :: header('')"></header>
 
 <div sec:authorize="isAuthenticated()">
     <div class="card">
-            <h1 class="card-title text-center mb-2">
-                Welcome, <span th:text="${#authentication.principal.name}"></span>!
-            </h1>
-            <div class="text-center">
-                Email: <span th:text="${#authentication.principal.email}"></span><br/>
-                User ID: <span th:text="${#authentication.principal.id}"></span>
-            </div>
+        <h1 class="card-title text-center mb-2">
+            Welcome to SA Scooter Blog, <span th:text="${#authentication.principal.name}"></span>!
+        </h1>
+        <div class="text-center">
+            Email: <span th:text="${#authentication.principal.email}"></span><br/>
+            User ID: <span th:text="${#authentication.principal.id}"></span>
+        </div>
     </div>
 </div>
 
 <div sec:authorize="isAnonymous()">
-    <h1 class="mt-2" style="text-align: center;">Hello</h1>
-    <h1 class="mt-2" style="text-align: center;">Please Log In or View Posts</h1>
+    <h1 class="mt-2" style="text-align: center;">Welcome to SA Scooter Blog</h1>
 </div>
+
+<br/>
+<div class="card mb-3">
+    <div class="card-body border-primary">
+        <h5 class="card-title text-center">SA Scooter Blog</h5>
+        <p class="card-text text-center">
+            <em>Where locals and tourists can discuss the new scooter movement happening
+            in San Antonio, Texas.</em>
+        </p>
+    </div>
+    <img src="/img/allscooters.jpeg" width="150" height="600" class="card-img-bottom" alt="..."/>
+</div>
+
 <br/>
 <div class="card-deck mx-2">
     <div class="card">
-        <img src="/img/bird.png" class="card-img-top" alt="..." />
+        <img src="/img/bird.png" width="90" height="150" class="card-img-top" alt="..."/>
         <div class="card-body">
             <h5 class="card-title">Bird Scooters</h5>
             <p class="card-text">Bird is a dockless electric scooter sharing company based in Santa Monica, California.
-                Founded in September 2017 by Travis VanderZanden, formerly an executive at Lyft and at Uber. Bird operates
+                Founded in September 2017 by Travis VanderZanden, formerly an executive at Lyft and at Uber. Bird
+                operates
                 electric scooters in over 60 cities throughout Europe, the Middle East,
                 and North America with 10 million rides in its first year of operation.
             </p>
@@ -43,20 +60,23 @@
         </div>
     </div>
     <div class="card">
-        <img src="/img/lime.png" class="card-img-top" alt="..." />
+        <img src="/img/lime.png" width="90" height="150" class="card-img-top" alt="..."/>
         <div class="card-body">
             <h5 class="card-title">Lime Scooters</h5>
             <p class="card-text">
-                Neutron Holdings, Inc. doing business under the name Lime, formerly LimeBike was founded in January 2017,
-                is a transportation-rental company based in the United States. It runs bicycle-, scooter-, and car-sharing
-                systems in various cities around the world. The systems offer dockless vehicles which users find and unlock
+                Neutron Holdings, Inc. doing business under the name Lime, formerly LimeBike was founded in January
+                2017,
+                is a transportation-rental company based in the United States. It runs bicycle-, scooter-, and
+                car-sharing
+                systems in various cities around the world. The systems offer dockless vehicles which users find and
+                unlock
                 via a mobile app which knows the location of available units via GPS and radio.
             </p>
             <a href="https://www.li.me/">Go to Lime</a>
         </div>
     </div>
     <div class="card">
-        <img src="/img/lyft.png" class="card-img-top" alt="..." />
+        <img src="/img/lyft.png" width="90" height="150" class="card-img-top" alt="..."/>
         <div class="card-body">
             <h5 class="card-title">Lyft Scooters</h5>
             <p class="card-text">
@@ -70,7 +90,7 @@
         </div>
     </div>
     <div class="card">
-        <img src="/img/jump.png" class="card-img-top" alt="..." />
+        <img src="/img/jump.png" width="100" height="150" class="card-img-top" alt="..."/>
         <div class="card-body">
             <h5 class="card-title">Jump Scooters</h5>
             <p class="card-text">
@@ -84,9 +104,9 @@
     </div>
 </div>
 
-<br />
+<br/>
 <div class="card mb-3 mx-4">
-    <img src="/img/blueduck.jpeg" class="card-img-top" alt="..." />
+    <img src="/img/blueduck.jpeg" width="150" height="500" class="card-img-top" alt="..."/>
     <div class="card-body">
         <h5 class="card-title">BLUE DUCK</h5>
         <p class="card-text"><em>San Antonio's own local Scooter Company</em></p>

@@ -8,9 +8,11 @@
 
 <nav th:replace="partials/navbar :: nav"></nav>
 
-<header th:replace="partials/header :: header('View all Posts!')"></header>
+<header th:replace="partials/header :: header('')"></header>
+<h1 class="text-center my-2">Create A Post</h1>
 
-<main class="container my-5" style="background-color: lightslategray; border: 5px solid darkslategrey;">
+
+<main class="container my-3" style="background-color: lightslategray; border: 5px solid darkslategrey;">
 <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
     <div class="form-group">
         Title:

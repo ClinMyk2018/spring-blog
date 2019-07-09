@@ -4,13 +4,12 @@
 <head th:replace="partials/head :: head('View Posts')">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
-
 </head>
 <body>
 
 <nav th:replace="partials/navbar :: nav"></nav>
 
-<header th:replace="partials/header :: header('View all Posts!')"></header>
+<header th:replace="partials/header :: header('')"></header>
 
 <div id="bg"
      style="
@@ -19,6 +18,8 @@
      background-position: center;
      background-repeat: no-repeat;
      background-size: cover;">
+
+    <h1 class="text-center">View all Posts!</h1>
 
 <main class="container row ml-5" style="width: 90%;">
     <th:block th:each="post : ${posts}">
@@ -32,15 +33,14 @@
             <a class="btn btn-primary"  th:href="@{'/posts/'+${post.id}}">View</a>
                 <a sec:authorize="isAuthenticated()"
                    th:if="${#authentication.principal.id} == ${post.user.id}"
-                   class="btn btn-warning"
+                   class="btn btn-warning mt-1"
                    th:href="@{'/posts/'+${post.id}+'/edit'}"
                 >Edit</a>
         </div>
     </th:block>
 </main>
-</div>
 
 <th:block th:include="partials/scripts :: scripts" />
-
+</div>
 </body>
 </html>
